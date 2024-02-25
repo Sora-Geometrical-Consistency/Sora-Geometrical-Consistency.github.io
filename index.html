@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="How well Can Sora See the Physical World: A Simple Benchmark">
+  <meta name="keywords" content="DrivingDiffusion">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How well Can Sora See the Physical World: A Simple Benchmark</title>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/ms_icon.png">
+
+  <style>  
+    table {  
+      font-family: arial, sans-serif;  
+      border-collapse: collapse;  
+      width: 100%;  
+    }  
+      
+    td, th {  
+      border: 2px solid #F1F4F5;  
+      text-align: left;  
+      padding: 8px;  
+    }  
+    tr:nth-child(3n - 1) {  
+      background-color: #F1F4F5;  
+    }  
+
+    tr:nth-child(3n) {  
+      border: 2px solid #FFFFFF;
+    }  
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+	
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"><strong>How well Can Sora See the Physical World: A Simple Benchmark </strong> </h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              Xuanyi LI<sup>1</sup> , </span>
+            <span class="author-block">
+              Daquan ZHOU <sup>2</sup>, </span>
+            <span class="author-block">
+              Chenxu ZHANG <sup>2</sup>  Shaodon WEI <sup>3</sup></span>
+            
+            <span class="author-block">
+              Qibin HOU <sup>1</sup> </span>
+            </span><br>                        
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>VCIP, Nankai University     <sup>3</sup>Wuhan University</span>&nbsp;
+          </div>
+          
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>2</sup>ByteDance Inc </span>&nbsp;
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/meteorshowers"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+        <img id="teaser" autoplay muted loop playsinline height="100%" src="./static/images/teaser1.png" style="width:100%;height:100%;">
+      <p  style="font-size: 16px;"> 
+        Comparisons among SORA, PIKA-LABS and GEN-2. Figure (a) shows the quantitative evaluation across five metrics:
+num pts refers to the total number of initial matching points in the binocular view, and num inliers F refers to the total number of
+matching points retained after filtering. The keep ratio is obtained by the ratio of num inliers F to num pts. Finally, we perform
+an overall statistical analysis of all data to calculate the RMSE (Root Mean Square Error) and MAE (Mean Absolute Error).
+Details refer to Table. 1. performance of different generative video methods under our designed fidelity metric for the Amalfi Coast
+scene. Plot (b) presents the performance of various methods under our designed Sustained Stability metric. Under both contexts,
+a significant advantage of SORA over other baselines was observed in terms of geometry consistency. We hope to use the proposed
+metrics to better answer the question ”How well can Sora see the physical world?”.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+	
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            The recently developed Sora model [1] has exhibited remarkable capabilities in video generation, sparking intense discussions
+regarding its ability to simulate real-world phenomena. Despite its growing popularity, there is a lack of established metrics
+to quantitatively evaluate its fidelity to real-world physics. In this paper, we introduce a new benchmark that assesses
+the quality of the generated videos based on their adherence to real-world physics principles. We employ a method that
+transforms the generated videos to 3D models, leveraging the premise that the accuracy of 3D reconstruction is heavily
+contingent on the video quality. From the perspective of 3D reconstruction, we use the fidelity of the geometric constraints
+satisfied by the constructed 3D models as a proxy to gauge the extent to which the generated videos conform to the rules
+of real-world physics.
+          </p>
+        </div> 
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+<section class="section" id="Method">
+
+  <div class="container is-max-desktop content">
+    <h2 class="title">Method</h2>
+
+
+	  
+    <section class="hero method">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+	    <h3 class="title">3D reconstruction pipeline</h2>
+		<hr> <!-- 分隔线 --> 
+
+          <!-- <img id="method" autoplay muted loop playsinline height="100%" src="./static/images/main.png" style="width:100%;height:100%;"> -->
+          <p>
+            To ensure fairness, we refrained from modifying the original COLMAP and
+            Gaussian Splatting algorithms to accommodate the characteristics of the generated videos. We utilize Structure-from-
+            Motion (SfM) to compute camera poses and then employ Gaussian splatting for 3D reconstruction.          </p>
+	 
+         
+	</div>
+      </div>
+    </section>
+
+	  
+
+
+
+<!-- 	inference fig -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+        <h3 class="title">Metrics design</h2>
+	<hr> <!-- 分隔线 --> 
+        <!-- <img id="teaser" autoplay muted loop playsinline height="100%" src="./static/images/inference.png" style="width:100%;height:100%;"> -->
+      <p  style="font-size: 16px;"> 
+	      The foundational principle of SFM (Structure from Motion) and 3D model construction is multi-view geometry, meaning that the quality of the model relies on two main factors: 1) The perspectives of the virtual video's observation cameras must sufficiently meet physical characteristics, such as the pinhole camera model. 2) As the video progresses and perspectives change, the rigid parts of the scene must vary in a manner that maintains physical and geometric stability.
+Furthermore, the fundamental unit of multi-view geometry is binocular geometry. The higher the physical fidelity of the AI-generated video, the more its two frames should conform to the ideal binocular geometry constraints, such as epipolar geometry. Specifically, the more ideal the camera imaging of the virtual viewpoints in the sequence video, the more faithfully the physical characteristics of the scene are preserved in the images. The closer the two frames adhere to ideal binocular geometry, and the smaller the distortion and warping of local features in terms of grayscale and shape, the more matching points can be obtained by the matching algorithm. Consequently, a higher number of high-quality matching points are retained after RANSAC.
+Therefore, we extract two frames at regular intervals from the AI-generated video, obtaining pairs of two-view images. For each pair, we use a matching algorithm to find corresponding points and employ RANSAC based on the fundamental matrix (epipolar constraint) to eliminate incorrect correspondences.
+After elimination, we calculate the average number of correct initial matching points, the average number of retained points, and the average retention ratio. Therefore, we have the following metrics: num_pts refers to the total number of initial matching points in the binocular view, and  num_inliers_F   refers to the total number of matching points retained after filtering. The keep_ratio is obtained by the ratio of num_inliers_F to num_pts. Additionally, for each pair of images, we calculate the bidirectional geometric reprojection error for N matching points per point of the F matrix, d(x, x'). x and x' are the matching points retained after RANSAC, and  
+d is the distance from a point to its corresponding epipolar line. Finally, we perform an overall statistical analysis of all data to calculate the RMSE (Root Mean Square Error) and MAE (Mean Absolute Error).
+      </p>
+    </div>
+  </div>
+</section>
+
+
+	  
+<section class="section" id="Results">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Results</h2>
+    <section class="hero method">
+    <div class="container is-max-desktop">
+    <div class="hero-body">  
+
+
+
+<!-- 1111111111111 -->
+<h4 class="title">1. Fidelity metric  result</h4>
+<hr> <!-- 分隔线 --> 
+	<section class="hero teaser">
+	  <div class="container is-max-desktop">
+	    <div class="hero-body">
+	      <div style="display: flex; justify-content: center; align-items: center;">  
+	          <img id="control" autoplay muted loop playsinline height="100%" src="./static/images/fidelitymetric.png" style="width:100%;height:100%;">
+		      <p  style="font-size: 16px;"> 
+		      </p>
+	      </div>
+	    </div>
+	  </div>
+	</section>
+
+
+
+<!-- 1111111111111 -->
+<h4 class="title">2. Sustained stability metric  result</h4>
+<hr> <!-- 分隔线 --> 
+	<section class="hero teaser">
+	  <div class="container is-max-desktop">
+	    <div class="hero-body">
+	      <div style="display: flex; justify-content: center; align-items: center;">  
+	          <img id="control" autoplay muted loop playsinline height="100%" src="./static/images/Sustainedstability.png" style="width:100%;height:100%;">
+		      <p  style="font-size: 16px;"> 
+		      </p>
+	      </div>
+	    </div>
+	  </div>
+	</section>
+
+<!-- 1111111111111 -->
+<h4 class="title">3. Visualization and Comparison of 3D Reconstruction Results from Different Videos Generation Methods </h4>
+<hr> <!-- 分隔线 --> 
+	<section class="hero teaser">
+	  <div class="container is-max-desktop">
+	    <div class="hero-body">
+	      <div style="display: flex; justify-content: center; align-items: center;">  
+	          <img id="control" autoplay muted loop playsinline height="100%" src="./static/images/recon.png" style="width:100%;height:100%;">
+		      <p  style="font-size: 16px;"> 
+		      </p>
+	      </div>
+	    </div>
+	  </div>
+	</section>
+
+
+
+<!-- 1111111111111 -->
+<h4 class="title">4. Visualization and Comparison of sparse matching Results from Different Videos Generation Methods </h4>
+<hr> <!-- 分隔线 --> 
+	<section class="hero teaser">
+	  <div class="container is-max-desktop">
+	    <div class="hero-body">
+	      <div style="display: flex; justify-content: center; align-items: center;">  
+	          <img id="control" autoplay muted loop playsinline height="100%" src="./static/images/matching.png" style="width:100%;height:100%;">
+		      <p  style="font-size: 16px;"> 
+		      </p>
+	      </div>
+	    </div>
+	  </div>
+	</section>
+
+
+<!-- 1111111111111 -->
+<h4 class="title">5. Visualization and Comparison of stereo matching Results from Different Videos Generation Methods </h4>
+<hr> <!-- 分隔线 --> 
+	<section class="hero teaser">
+	  <div class="container is-max-desktop">
+	    <div class="hero-body">
+	      <div style="display: flex; justify-content: center; align-items: center;">  
+	          <img id="control" autoplay muted loop playsinline height="100%" src="./static/images/stereomatching.png" style="width:100%;height:100%;">
+		      <p  style="font-size: 16px;"> 
+		      </p>
+	      </div>
+	    </div>
+	  </div>
+	</section>
+
+
+
+
+<!-- 44444444444     -->
+<h4 class="title">6. Visualization Comparison of Videos Generated by Different Methods (pika -->  gen2 --> sora) </h4>
+<hr> <!-- 分隔线 --> 
+	    
+
+	<div class="video-container">  
+
+
+	  <video controls>  
+	    <source src="./static/videos/pika/pika-amalfi-coast.mp4" type="video/mp4">  
+	    Ha.  
+	  </video>  
+	  <video controls>  
+	    <source src="./static/videos/gen2/Gen-2-amalfi-coast.mp4" type="video/mp4">  
+	    Ha.  
+	  </video>  
+    <video controls>  
+	    <source src="./static/videos/sora/amalfi-coast.mp4" type="video/mp4">  
+	    Ha.  
+	  </video>  
+
+
+
+	  <video controls>  
+	    <source src="./static/videos/pika/pika-art-museum.mp4" type="video/mp4">  
+	    Ha.  
+	  </video>  
+	  <video controls>  
+	    <source src="./static/videos/gen2/Gen-2-art-museum.mp4" type="video/mp4">  
+	    Ha.  
+	  </video>  
+	  <video controls>  
+	    <source src="./static/videos/sora/art-museum.mp4" type="video/mp4">  
+	    Ha.  
+	  </video>  
+
+
+
+
+	  <video controls>  
+	    <source src="./static/videos/pika/pika-big-sur.mp4" type="video/mp4">  
+	    Ha.  
+	  </video>  
+	  <video controls>  
+	    <source src="./static/videos/gen2/Gen-2-big-sur.mp4" type="video/mp4">  
+	    Ha.  
+	  </video>  
+    <video controls>  
+	    <source src="./static/videos/sora/big-sur.mp4" type="video/mp4">  
+	    Ha.  
+	  </video>  
+
+
+
+
+	  <video controls>  
+	    <source src="./static/videos/pika/pika-gold-rush.mp4" type="video/mp4">  
+	    Ha.  
+	  </video>  
+	  <video controls>  
+	    <source src="./static/videos/gen2/Gen-2-gold-rush.mp4" type="video/mp4">  
+	    Ha.  
+	  </video>  
+    <video controls>  
+	    <source src="./static/videos/sora/gold-rush.mp4" type="video/mp4">  
+	    Ha.  
+	  </video>  
+
+
+
+	  <video controls>  
+	    <source src="./static/videos/pika/pika-minecraft.mp4" type="video/mp4">  
+	    Ha.  
+	  </video>  
+	  <video controls>  
+	    <source src="./static/videos/gen2/Gen-2-minecraft.mp4" type="video/mp4">  
+	    Ha.  
+	  </video>  
+    <video controls>  
+	    <source src="./static/videos/sora/minecraft.mp4" type="video/mp4">  
+	    Ha.  
+	  </video>  
+
+
+	  <video controls>  
+	    <source src="./static/videos/pika/pika-santorini.mp4" type="video/mp4">  
+	    Ha.  
+	  </video> 
+
+	  <video controls>  
+	    <source src="./static/videos/gen2/Gen-2-santorini.mp4" type="video/mp4">  
+	    Ha.  
+	  </video>  
+    <video controls>  
+	    <source src="./static/videos/sora/santorini.mp4" type="video/mp4">  
+	    Ha.  
+	  </video>  
+
+	</div>  
+<p style="margin-bottom: 30px;"></p>
+</section>
+
+	    
+<section class="hero teaser">
+	<style>  
+	.video-container {  
+	  display: grid;  
+	  grid-template-columns: repeat(3, 1fr);  
+	  grid-template-rows: repeat(6, 1fr);  
+	  gap: 10px; /* 视频间的间距 */  
+	}  
+	.video-container video {  
+	  width: 100%; /* 视频的宽度 */  
+	  height: 100%; /* 视频的高度 */  
+	}  
+	</style>  
+ 
+  
+
+
+
+	    
+<!-- BBBBBBBBBBBBBib -->
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <p> If this paper is useful or relevant to your research, please kindly recognize our contributions by citing our paper: </p>
+    <pre><code>@article{li2023drivingdiffusion,
+  title={How well Can Sora See the Physical World: A Simple Benchmark},
+  author={Xuanyi LI, Daquan ZHOU, Chenxu ZHANG, Shaodong Wei,  Qibin HOU},
+  journal={arXiv preprint arXiv:2310.07771},
+  year={2023}
+}</code></pre>
+  </div>
+</section>
+
+
+
+	
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://github.com/meteorshowers" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+      <a class="icon-link" href="https://www.linkedin.com/in/xuanyi-li-650139111" class="external-link" disabled>
+        <i class="fab fa-linkedin"></i>
+      </a>      
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
