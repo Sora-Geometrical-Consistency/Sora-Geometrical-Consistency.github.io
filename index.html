@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="How well Can Sora See the Physical World: A Simple Benchmark">
+        content="Sora Generates Videos with Stunning Geometrical
+        Consistency">
   <meta name="keywords" content="sora">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>How well Can Sora See the Physical World: A Simple Benchmark</title>
+  <title>Sora Generates Videos with Stunning Geometrical Consistency</title>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -76,7 +77,8 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title"><strong>How well Can Sora See the Physical World: A Simple Benchmark </strong> </h1>
+          <h1 class="title is-1 publication-title"><strong>Sora Generates Videos with Stunning Geometrical
+            Consistency </strong> </h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               Xuanyi LI<sup>*1</sup> , </span>
@@ -134,8 +136,8 @@
     <div class="hero-body">
         <img id="teaser" autoplay muted loop playsinline height="100%" src="./static/images/teaser.png" style="width:100%;height:100%;">
       <p  style="font-size: 16px;"> 
-        Comparisons among Sora, Pika-labs and Gen-2. (a) shows the quantitative evaluations across five metrics, which we
-define in Sec. 2. For more details, readers can refer to Tab. 1. (b) presents the performance of different methods under our designed
+        Comparisons among Sora, Pika, and Gen2. (a) shows the quantitative evaluations across five metrics, which we define
+in Sec. 2. For more details, readers can refer to Tab. 1. (b) presents the performance of different methods under our designed
 Sustained Stability metric. For both figures, we can see a significant advantage of Sora over other baselines in terms of geometry
 consistency.
       </p>
@@ -156,12 +158,12 @@ consistency.
           <p>
             The recently developed Sora model [1] has exhibited remarkable capabilities in video generation, sparking intense discussions
 regarding its ability to simulate real-world phenomena. Despite its growing popularity, there is a lack of established metrics
-to quantitatively evaluate its fidelity to real-world physics. In this paper, we introduce a new benchmark that assesses
+to evaluate its fidelity to real-world physics quantitatively. In this paper, we introduce a new benchmark that assesses
 the quality of the generated videos based on their adherence to real-world physics principles. We employ a method that
-transforms the generated videos to 3D models, leveraging the premise that the accuracy of 3D reconstruction is heavily
+transforms the generated videos into 3D models, leveraging the premise that the accuracy of 3D reconstruction is heavily
 contingent on the video quality. From the perspective of 3D reconstruction, we use the fidelity of the geometric constraints
-satisfied by the constructed 3D models as a proxy to gauge the extent to which the generated videos conform to the rules
-of real-world physics.
+satisfied by the constructed 3D models as a proxy to gauge the extent to which the generated videos conform to real-world
+physics rules.
           </p>
         </div> 
       </div>
@@ -186,9 +188,10 @@ of real-world physics.
 
           <!-- <img id="method" autoplay muted loop playsinline height="100%" src="./static/images/main.png" style="width:100%;height:100%;"> -->
           <p>
-            To ensure fairness, we refrained from modifying the original COLMAP and
-            Gaussian Splatting algorithms to accommodate the characteristics of the generated videos. We utilize Structure-from-
-            Motion (SfM) to compute camera poses and then employ Gaussian splatting for 3D reconstruction.          </p>
+            We refrain from modifying the original COLMAP [14] and Gaussian Splatting [18]
+algorithms to accommodate the characteristics of the generated videos. We utilize Structure-from-Motion (SfM) [14] to
+compute camera poses and then employ Gaussian Splatting for 3D reconstruction. The detailed metrics used in this
+benchmark are described in the following.          </p>
 	 
          
 	</div>
@@ -207,11 +210,27 @@ of real-world physics.
 	<hr> <!-- 分隔线 --> 
         <!-- <img id="teaser" autoplay muted loop playsinline height="100%" src="./static/images/inference.png" style="width:100%;height:100%;"> -->
       <p  style="font-size: 16px;"> 
-	      The foundational principle of SFM (Structure from Motion) and 3D model construction is multi-view geometry, meaning that the quality of the model relies on two main factors: 1) The perspectives of the virtual video's observation cameras must sufficiently meet physical characteristics, such as the pinhole camera model. 2) As the video progresses and perspectives change, the rigid parts of the scene must vary in a manner that maintains physical and geometric stability.
-Furthermore, the fundamental unit of multi-view geometry is binocular geometry. The higher the physical fidelity of the AI-generated video, the more its two frames should conform to the ideal binocular geometry constraints, such as epipolar geometry. Specifically, the more ideal the camera imaging of the virtual viewpoints in the sequence video, the more faithfully the physical characteristics of the scene are preserved in the images. The closer the two frames adhere to ideal binocular geometry, and the smaller the distortion and warping of local features in terms of grayscale and shape, the more matching points can be obtained by the matching algorithm. Consequently, a higher number of high-quality matching points are retained after RANSAC.
-Therefore, we extract two frames at regular intervals from the AI-generated video, obtaining pairs of two-view images. For each pair, we use a matching algorithm to find corresponding points and employ RANSAC based on the fundamental matrix (epipolar constraint) to eliminate incorrect correspondences.
-After elimination, we calculate the average number of correct initial matching points, the average number of retained points, and the average retention ratio. Therefore, we have the following metrics: num_pts refers to the total number of initial matching points in the binocular view, and  num_inliers_F   refers to the total number of matching points retained after filtering. The keep_ratio is obtained by the ratio of num_inliers_F to num_pts. Additionally, for each pair of images, we calculate the bidirectional geometric reprojection error for N matching points per point of the F matrix, d(x, x'). x and x' are the matching points retained after RANSAC, and  
-d is the distance from a point to its corresponding epipolar line. Finally, we perform an overall statistical analysis of all data to calculate the RMSE (Root Mean Square Error) and MAE (Mean Absolute Error).
+	      The foundational principle of SFM (Structure from Motion) [14] and 3D construction is multi-view
+geometry, meaning that the quality of the model relies on two main factors: 1) The perspectives of the virtual video’s
+observation cameras must sufficiently meet physical characteristics, such as the pinhole camera; 2) As the video progresses
+and perspectives change, the rigid parts of the scene must vary in a manner that maintains physical and geometric stability.
+Furthermore, the fundamental unit of multi-view geometry is two-view geometry. The higher the physical fidelity of the
+AI-generated video, the more its two frames should conform to the ideal two–view geometry constraints, such as epipolar
+geometry. Specifically, the more ideal the camera imaging of the virtual viewpoints in the sequence video, the more faithfully
+the physical characteristics of the scene are preserved in the images. The closer the two frames adhere to ideal two–view
+geometry, and the smaller the distortion and warping of local features in terms of grayscale and shape, the more matching
+points can be obtained by the matching algorithm. Consequently, a higher number of high-quality matching points are
+retained after RANSAC [19]. Therefore, we extract two frames at regular intervals from the AI-generated videos, yielding
+pairs of two-view images. For each pair, we use a matching algorithm to find corresponding points and employ RANSAC
+based on the fundamental matrix (epipolar constraint) to eliminate incorrect correspondences.
+After elimination, we calculate the average number of correct initial matching points, the average number of retained
+points, and the average retention ratio. Therefore, we have the following metrics: num pts refers to the total number of
+initial matching points in the binocular view, and num inliers F refers to the total number of matching points retained
+after filtering. The keep ratio is obtained by the ratio of num inliers F to num pts. Additionally, for each pair of images,
+we calculate the bidirectional geometric reprojection error for N matching points per point of the F matrix, d(x, x′). x and
+x′ are the matching points retained after RANSAC and d is the distance from a point to its corresponding epipolar line.
+Finally, we perform an overall statistical analysis of all data to calculate the RMSE (Root Mean Square Error) and MAE
+(Mean Absolute Error).
       </p>
     </div>
   </div>
@@ -439,11 +458,12 @@ d is the distance from a point to its corresponding epipolar line. Finally, we p
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <p> If this paper is useful or relevant to your research, please kindly recognize our contributions by citing our paper: </p>
-    <pre><code>@article{li2023drivingdiffusion,
-  title={How well Can Sora See the Physical World: A Simple Benchmark},
-  author={Xuanyi LI, Daquan ZHOU, Chenxu ZHANG, Shaodong Wei,  Qibin HOU},
-  journal={arXiv preprint arXiv:2310.07771},
-  year={2023}
+    <pre><code>@article{,
+  title={ Sora Generates Videos with Stunning Geometrical
+    Consistency},
+  author={Xuanyi LI, Daquan ZHOU, Chenxu ZHANG, Shaodong Wei,  Qibin HOU, Ming-Ming CHENG},
+  journal={arXiv preprint arXiv:},
+  year={2024}
 }</code></pre>
   </div>
 </section>
